@@ -13,8 +13,9 @@ class Practitioner extends Model
 
     protected $fillable = [
         'practitioner_id',
-        'speciality',
+        'specialty',
         'working_hours',
         'user_id',
     ];
+    public $timestamps = false;
 }

@@ -13,7 +13,7 @@
                         </div>
                     @endif
 
-                    <!-- زر Add New Practitioner -->
+                    
                     <div class="mb-6">
                         <a href="{{ route('practitioners.create') }}" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200">
                             ➕ Add New Practitioner
@@ -25,7 +25,7 @@
                             <thead class="bg-gray-100">
                                 <tr>
                                     <th scope="col" class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Practitioner ID</th>
-                                    <th scope="col" class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Speciality</th>
+                                    <th scope="col" class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Specialty</th>
                                     <th scope="col" class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Working Hours</th>
                                     <th scope="col" class="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">User ID</th>
                                     <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider min-w-[280px]">Actions</th>
@@ -35,12 +35,12 @@
                                 @forelse ($practitioner as $item)
                                     <tr class="hover:bg-gray-50 transition duration-150">
                                         <td class="px-4 py-2 whitespace-nowrap text-gray-800 truncate max-w-md">{{ $item->practitioner_id }}</td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-gray-800 max-w-xs">{{ $item->speciality ?? 'N/A' }}</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-gray-800 max-w-xs">{{ $item->specialty ?? 'N/A' }}</td>
                                         <td class="px-4 py-2 whitespace-nowrap text-gray-800 max-w-xs">{{ $item->working_hours }}</td>
                                         <td class="px-4 py-2 whitespace-nowrap text-gray-800 truncate max-w-md">{{ $item->user_id }}</td>
                                         <td class="px-6 py-2 whitespace-nowrap">
                                             <div class="flex flex-col space-y-2">
-                                                <!-- View Button -->
+                                                
                                                 <form action="{{ route('practitioners.show', $item->practitioner_id) }}" method="GET" class="inline-block">
                                                     @csrf
                                                     <button type="submit" class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 w-full">
@@ -48,7 +48,7 @@
                                                     </button>
                                                 </form>
 
-                                                <!-- Edit Button -->
+                                               
                                                 <form action="{{ route('practitioners.edit', $item->practitioner_id) }}" method="GET" class="inline-block">
                                                     @csrf
                                                     <button type="submit" class="flex items-center px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200 w-full">
@@ -56,7 +56,7 @@
                                                     </button>
                                                 </form>
 
-                                                <!-- Delete Button -->
+
                                                 <form action="{{ route('practitioners.destroy', $item->practitioner_id) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete Practitioner ID: {{ $item->practitioner_id }}?');">
                                                     @csrf
                                                     @method('DELETE')

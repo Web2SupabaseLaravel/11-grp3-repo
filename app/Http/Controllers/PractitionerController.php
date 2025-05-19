@@ -28,14 +28,14 @@ class PractitionerController extends Controller
     {
         $request->validate([
             'practitioner_id' => 'required|uuid|unique:practitioner,practitioner_id',
-            'speciality' => 'nullable|string',
+            'specialty' => 'nullable|string',
             'working_hours' => 'required|string',
             'user_id' => 'required|uuid|exists:users,id',
         ]);
 
         Practitioner::create([
             'practitioner_id' => $request->practitioner_id,
-            'speciality' => $request->speciality,
+            'specialty' => $request->specialty,
             'working_hours' => $request->working_hours,
             'user_id' => $request->user_id,
         ]);
@@ -62,24 +62,28 @@ class PractitionerController extends Controller
     }
 
     public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'practitioner_id' => 'required|uuid|unique:practitioner,practitioner_id,' . $id . ',practitioner_id',
-            'speciality' => 'nullable|string',
-            'working_hours' => 'required|string',
-            'user_id' => 'required|uuid|exists:users,id',
-        ]);
+{
+    \Log::info('Update request data: ', $request->all()); // سجل البيانات
 
-        $practitioner = Practitioner::findOrFail($id);
-        $practitioner->update([
-            'practitioner_id' => $request->practitioner_id,
-            'speciality' => $request->speciality,
-            'working_hours' => $request->working_hours,
-            'user_id' => $request->user_id,
-        ]);
+    $request->validate([
+        'practitioner_id' => 'required|uuid|unique:practitioner,practitioner_id,' . $id . ',practitioner_id',
+        'specialty' => 'nullable|string',
+        'working_hours' => 'required|string',
+        'user_id' => 'required|uuid|exists:users,id',
+    ]);
 
-        return redirect()->route('practitioners.show', $id)->with('success', 'Practitioner updated successfully.');
-    }
+    $practitioner = Practitioner::findOrFail($id);
+    $updated = $practitioner->update([
+        'practitioner_id' => $request->practitioner_id,
+        'specialty' => $request->specialty,
+        'working_hours' => $request->working_hours,
+        'user_id' => $request->user_id,
+    ]);
+
+    \Log::info('Update result: ', ['success' => $updated]); // سجل نتيجة التحديث
+
+    return redirect()->route('practitioners.show', $id)->with('success', 'Practitioner updated successfully.');
+}
 
     public function destroy(string $id)
     {

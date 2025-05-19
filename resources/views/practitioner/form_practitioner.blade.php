@@ -13,48 +13,34 @@
                         </div>
                     @endif
 
-                    <form action="{{ route($route[0], $route[1] ?? []) }}" method="{{ $method }}">
-                        @csrf
-                        @if ($method == 'put')
-                            @method('PUT')
-                        @endif
+                    <form action="{{ route($route[0], $route[1]) }}" method="POST">
+    @csrf
+    @if ($method === 'put')
+        @method('PUT')
+    @endif
 
-                        <div class="mb-4">
-                            <label for="practitioner_id" class="block text-sm font-medium text-gray-700">Practitioner ID</label>
-                            <input type="text" name="practitioner_id" id="practitioner_id" value="{{ old('practitioner_id', $practitioner->practitioner_id ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            @error('practitioner_id')
-                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
+    <div class="mb-4">
+        <label for="practitioner_id" class="block text-sm font-medium text-gray-700">Practitioner ID</label>
+        <input type="text" name="practitioner_id" id="practitioner_id" value="{{ old('practitioner_id', $practitioner->practitioner_id ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" readonly>
+    </div>
 
-                        <div class="mb-4">
-                            <label for="speciality" class="block text-sm font-medium text-gray-700">Speciality</label>
-                            <input type="text" name="speciality" id="speciality" value="{{ old('speciality', $practitioner->speciality ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @error('speciality')
-                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
+    <div class="mb-4">
+        <label for="specialty" class="block text-sm font-medium text-gray-700">Specialty</label>
+        <input type="text" name="specialty" id="specialty" value="{{ old('specialty', $practitioner->specialty ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+    </div>
 
-                        <div class="mb-4">
-                            <label for="working_hours" class="block text-sm font-medium text-gray-700">Working Hours</label>
-                            <input type="text" name="working_hours" id="working_hours" value="{{ old('working_hours', $practitioner->working_hours ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            @error('working_hours')
-                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
+    <div class="mb-4">
+        <label for="working_hours" class="block text-sm font-medium text-gray-700">Working Hours</label>
+        <input type="text" name="working_hours" id="working_hours" value="{{ old('working_hours', $practitioner->working_hours ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+    </div>
 
-                        <div class="mb-4">
-                            <label for="user_id" class="block text-sm font-medium text-gray-700">User ID</label>
-                            <input type="text" name="user_id" id="user_id" value="{{ old('user_id', $practitioner->user_id ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            @error('user_id')
-                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
+    <div class="mb-4">
+        <label for="user_id" class="block text-sm font-medium text-gray-700">User ID</label>
+        <input type="text" name="user_id" id="user_id" value="{{ old('user_id', $practitioner->user_id ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" readonly>
+    </div>
 
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            {{ $submitButton }}
-                        </button>
-                    </form>
+    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-200 border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-300">{{ $submitButton }}</button>
+</form>
                 </div>
             </div>
         </div>
