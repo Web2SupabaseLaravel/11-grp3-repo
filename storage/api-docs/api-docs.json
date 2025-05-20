@@ -1,0 +1,192 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Practitioner API",
+        "description": "API for managing practitioners",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/practitioners": {
+            "get": {
+                "tags": [
+                    "Practitioners"
+                ],
+                "summary": "List all practitioners",
+                "operationId": "92dc8c1b1cce75bbc1ec59c32355cf0f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Practitioner"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Practitioners"
+                ],
+                "summary": "Create a new practitioner",
+                "operationId": "bc1ed24294a46c0484f8b2cec14aec2b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Practitioner"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Practitioner created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Practitioner"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/practitioners/{id}": {
+            "get": {
+                "tags": [
+                    "Practitioners"
+                ],
+                "summary": "Get a practitioner by ID",
+                "operationId": "bede11e0e705a1df88ca705f7f49304c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Practitioner"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Practitioner not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Practitioners"
+                ],
+                "summary": "Update a practitioner",
+                "operationId": "4366ec10afd8daf066a22343273d8c8f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Practitioner"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Practitioner updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Practitioner"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Practitioners"
+                ],
+                "summary": "Delete a practitioner",
+                "operationId": "f6d9558a0393e889a282b6630173e5cf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Practitioner deleted"
+                    },
+                    "404": {
+                        "description": "Practitioner not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Practitioner": {
+                "properties": {
+                    "practitioner_id": {
+                        "type": "string",
+                        "example": "uuid-1"
+                    },
+                    "specialty": {
+                        "type": "string",
+                        "example": "Cardiology"
+                    },
+                    "working_hours": {
+                        "type": "string",
+                        "example": "9 AM - 5 PM"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "example": "uuid-2"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Practitioners",
+            "description": "Practitioners"
+        }
+    ]
+}
