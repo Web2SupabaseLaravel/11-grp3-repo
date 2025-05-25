@@ -3,8 +3,8 @@
 This project is a Laravel application implementing CRUD operations using Supabase as the database, with API documentation provided via Swagger. The project includes two related models: `User` and `Practitioner`. This README provides a comprehensive guide to set up, configure, and run the project, as well as details about its structure and usage.
 
 #### Project Overview
-- **Created by**: Mahmoud (mahmoudze)
-- **Last Updated**: May 25, 2025, 08:26 AM EEST
+- **Created by**: Mahmoud 
+- **Last Updated**: May 20, 2025, 08:26 AM EEST
 - **GitHub Repository**: [https://github.com/Web2SupabaseLaravel/11-grp3-repo.git]
 
 #### Requirements
