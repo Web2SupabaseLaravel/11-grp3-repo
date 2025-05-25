@@ -17,7 +17,6 @@ This project is a Laravel application implementing CRUD operations using Supabas
 ## Setup Instructions
 
 ### 1. Clone the Repository
-```bash
 git clone https://github.com/Web2SupabaseLaravel/11-grp3-repo.git
 cd laravel-project
 
