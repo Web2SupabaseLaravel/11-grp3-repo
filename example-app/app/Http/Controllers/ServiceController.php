@@ -3,92 +3,73 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-       $data['service'] = \App\Models\service::all();
-          
-             return $data;
+        $services = Service::all();
+        return response()->json($services);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $data['service'] = new \App\Models\service(); 
-        $data['route'] = 'dataservice.store'; 
-        $data['method'] = 'post';
+        return response()->json(['message' => 'Use POST to /dataservice to create a service']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-       $request->validate([
-        'name' => 'required',
-        'duration' => 'required', 
-        'fee' => 'required',
-        
-    ]);
+        $validated = $request->validate([
+            'name' => 'required',
+            'duration' => 'required',
+            'fee' => 'required',
+        ]);
 
-    $inputEvent = new \App\Models\service(); 
-    $inputEvent->name = $request->name;
-    $inputEvent->duration = $request->created_at; 
-    $inputEvent->fee = $request->fee;
-    $inputEvent->save();
-    return redirect('dataservice/create');
+        $service = Service::create($validated);
+        return response()->json([
+            'message' => 'Service created successfully',
+            'service' => $service
+        ], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        
+        $service = Service::findOrFail($id);
+        return response()->json($service);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-       $data['service'] = \App\Models\service::finOrFail($id);
-        $data['route'] = ['dataservice.update', $id];
-        $data['method'] = 'post';
-
+        $service = Service::findOrFail($id);
+        return response()->json([
+            'service' => $service,
+            'message' => 'Use PUT to /dataservice/{service_id} to update'
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        $validatedData = $request->validate([
-        'name' => 'required',
-        'duration' => 'required', 
-        'fee' => 'required',
-        
-    ]);
-    $editService =  \App\Models\service::findOrFail($id);
-    $editService->update($validatedData);
-    return redirect('dataservice/update');
+        $validated = $request->validate([
+            'name' => 'required',
+            'duration' => 'required',
+            'fee' => 'required',
+        ]);
+
+        $service = Service::findOrFail($id);
+        $service->update($validated);
+
+        return response()->json([
+            'message' => 'Service updated successfully',
+            'service' => $service
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        $data['service'] = \App\Models\service::where('id', $id)->firstOrFail();
-        $dataData->delete();
-        return redirect('dataservice/delete');
+        $service = Service::findOrFail($id);
+        $service->delete();
 
+        return response()->json(['message' => 'Service deleted successfully']);
     }
 }
