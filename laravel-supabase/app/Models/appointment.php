@@ -3,32 +3,44 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str; // For UUIDs
 
 class Appointment extends Model
 {
-    protected $table = 'appointment';
+    // You don't need a protected $table if the model name is singular of the table name
+    // protected $table = 'appointment'; // If your table name is 'appointment'
 
-    protected $primaryKey = 'appointment_id';
-    public $incrementing = false;
-    protected $keyType = 'string';
-    public $timestamps = false;
+    public $incrementing = false; // UUIDs are not auto-incrementing
+    protected $keyType = 'string'; // Primary key is a string (UUID)
+    protected $primaryKey = 'appointment_id'; // Specify primary key
 
     protected $fillable = [
-        'appointment_id',
+        'appointment_id', // Make sure to fill this if generating in Laravel
         'status',
-        'created_at',
-        'canceled_at',
         'user_id',
         'slot_id',
+        'canceled_at',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
+    protected $casts = [
+        'created_at' => 'datetime',
+        'canceled_at' => 'datetime',
+    ];
 
+    // Relationship to AppointmentSlot
     public function slot()
     {
-        return $this->belongsTo(Slot::class, 'slot_id', 'id');
+        return $this->belongsTo(AppointmentSlot::class, 'slot_id', 'slot_id');
+    }
+
+    // Generate UUID for new models
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = (string) Str::uuid();
+            }
+        });
     }
 }

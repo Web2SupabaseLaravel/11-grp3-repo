@@ -3,26 +3,28 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AppointmentSlotController;
 
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
 |
-| هنا بتسجل مسارات الـ API الخاصة بك.
-| هذه المسارات محملة عبر RouteServiceProvider وتستخدم مجموعة middleware الخاصة بـ "api".
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
-// إذا بدك تحمي المسارات باستخدام المصادقة (مثلاً Sanctum) شيل التعليق عن السطرين التاليين:
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::apiResource('appointments', AppointmentController::class);
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-// أما لو تريد تفتحها بدون مصادقة استخدم هذا السطر:
+// Appointment Routes
 Route::apiResource('appointments', AppointmentController::class);
 
-// مسار اختبار للتأكد من أن API شغالة:
-Route::get('/ping', function () {
-    return response()->json(['message' => 'API is working']);
-});
+// Appointment Slot Routes
+Route::apiResource('appointment-slots', AppointmentSlotController::class);
+
+// Example of a nested route for appointments within a slot (optional)
+Route::get('appointment-slots/{slot_id}/appointments', [AppointmentSlotController::class, 'getAppointmentsForSlot']);
