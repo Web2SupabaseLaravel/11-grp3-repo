@@ -1,4 +1,3 @@
-https://github.com/Web2SupabaseLaravel/11-grp3-repo.git
 # Laravel CRUD Project with Supabase and Swagger Documentation
 
 This project is a Laravel application implementing CRUD operations using Supabase as the database, with API documentation provided via Swagger. The project includes two related models: `User` and `Practitioner`. This README provides a comprehensive guide to set up, configure, and run the project, as well as details about its structure and usage.
