@@ -6,12 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
-        // الجدول موجود بالفعل في Supabase، لكن نحدد هيكله لأغراض التوثيق
+        
         Schema::create('practitioner', function (Blueprint $table) {
             $table->uuid('practitioner_id')->primary();
             $table->string('specialty')->nullable();
@@ -21,9 +19,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('practitioner');
