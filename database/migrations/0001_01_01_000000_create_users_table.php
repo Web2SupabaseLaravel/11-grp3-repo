@@ -13,12 +13,12 @@ return new class extends Migration
     {
         if (!Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
+                $table->uuid('id')->primary(); // استخدام UUID كمفتاح أساسي
                 $table->string('email')->unique();
-                $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
-                $table->rememberToken();
+                $table->string('first_name');
+                $table->string('last_name');
+                $table->string('profile_img_url')->nullable();
                 $table->timestamps();
             });
         }
@@ -48,8 +48,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };

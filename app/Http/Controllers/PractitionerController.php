@@ -29,7 +29,7 @@ class PractitionerController extends Controller
      */
     public function index()
     {
-        $practitioners = Practitioner::all();
+        $practitioners = Practitioner::with('user')->get();
         return response()->json($practitioners);
     }
 
@@ -76,7 +76,7 @@ class PractitionerController extends Controller
      */
     public function show(string $id)
     {
-        $practitioner = Practitioner::findOrFail($id);
+        $practitioner = Practitioner::with('user')->findOrFail($id);
         return response()->json($practitioner);
     }
 
