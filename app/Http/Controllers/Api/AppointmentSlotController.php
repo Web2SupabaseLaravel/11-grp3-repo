@@ -19,7 +19,7 @@ class AppointmentSlotController extends Controller
      *     description="A list of slots",
      *     @OA\JsonContent(
      *       type="array",
-     *       @OA\Items(ref="#/components/schemas/AppointmentSlot")
+     *       @OA\Items(ref="../../../Swagger/Schemas/AppointmentSlot.php")
      *     )
      *   )
      * )
@@ -45,7 +45,7 @@ class AppointmentSlotController extends Controller
      *     )
      *   ),
      *   @OA\Response(response=201, description="Created",
-     *     @OA\JsonContent(ref="#/components/schemas/AppointmentSlot")
+     *     @OA\JsonContent(ref="../../../Swagger/Schemas")
      *   )
      * )
      */
@@ -72,7 +72,7 @@ class AppointmentSlotController extends Controller
      *     @OA\Schema(type="string", format="uuid")
      *   ),
      *   @OA\Response(response=200, description="Slot details",
-     *     @OA\JsonContent(ref="#/components/schemas/AppointmentSlot")
+     *     @OA\JsonContent(ref="../../../Swagger/Schemas")
      *   ),
      *   @OA\Response(response=404, description="Not Found")
      * )
@@ -97,7 +97,7 @@ class AppointmentSlotController extends Controller
      *     )
      *   ),
      *   @OA\Response(response=200, description="Updated",
-     *     @OA\JsonContent(ref="#/components/schemas/AppointmentSlot")
+     *     @OA\JsonContent(ref="../../../Swagger/Schemas")
      *   )
      * )
      */
