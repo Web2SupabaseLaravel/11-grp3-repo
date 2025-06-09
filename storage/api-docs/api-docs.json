@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "VvClinic Appointment Slots API",
+        "description": "Documentation for the Appointment Slots endpoints",
+        "contact": {
+            "email": "support@vvclinic.example"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/appointment-slots": {
+            "get": {
+                "tags": [
+                    "AppointmentSlots"
+                ],
+                "summary": "List all appointment slots",
+                "operationId": "ee75f35c4de3aa1e34f53d91140edfd9",
+                "responses": {
+                    "200": {
+                        "description": "A list of slots",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AppointmentSlot"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "AppointmentSlots"
+                ],
+                "summary": "Create a new slot",
+                "operationId": "a24155dc1f08878e07efc8f918e4affb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "practitioner_id",
+                                    "service_id",
+                                    "start_time",
+                                    "end_time"
+                                ],
+                                "properties": {
+                                    "practitioner_id": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    },
+                                    "service_id": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "end_time": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppointmentSlot"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/appointment-slots/{slot_id}": {
+            "get": {
+                "tags": [
+                    "AppointmentSlots"
+                ],
+                "summary": "Get a specific slot",
+                "operationId": "f52d2d58773b3952f7e2943eb883395c",
+                "parameters": [
+                    {
+                        "name": "slot_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Slot details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppointmentSlot"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "AppointmentSlots"
+                ],
+                "summary": "Update a slot",
+                "operationId": "540a61c86aa174829426b92bc93153c9",
+                "parameters": [
+                    {
+                        "name": "slot_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "is_booked": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppointmentSlot"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AppointmentSlots"
+                ],
+                "summary": "Delete a slot",
+                "operationId": "ab7f7334dfd3d59e5ac2e822b1b528fd",
+                "parameters": [
+                    {
+                        "name": "slot_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AppointmentSlot": {
+                "title": "Appointment Slot",
+                "description": "Appointment slot model",
+                "properties": {
+                    "slot_id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "practitioner_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "service_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "start_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "is_booked": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "AppointmentSlots",
+            "description": "AppointmentSlots"
+        }
+    ]
+}
