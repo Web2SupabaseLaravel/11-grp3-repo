@@ -14,6 +14,5 @@ namespace App\Swagger;
  */
 class SwaggerInfo
 {
-    // هذا الملف لا يحتاج إلى محتوى PHP عادي،
-    // التعليقات هي كل ما يهم swagger-php حتى تتعرف على Info.
+
 }

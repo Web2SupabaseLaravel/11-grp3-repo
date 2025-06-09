@@ -8,7 +8,6 @@ return new class extends Migration
 {
     public function up()
     {
-        // أضف قيد CHECK عبر SQL خام
         DB::statement(<<<SQL
             ALTER TABLE appointment_slots
             ADD CONSTRAINT appointment_slots_end_after_start
@@ -18,7 +17,6 @@ return new class extends Migration
 
     public function down()
     {
-        // إزالة القيد لو تراجعتِ
         DB::statement('ALTER TABLE appointment_slots DROP CONSTRAINT IF EXISTS appointment_slots_end_after_start');
     }
 };

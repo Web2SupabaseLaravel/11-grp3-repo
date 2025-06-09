@@ -90,23 +90,17 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        /*
-         * Package Service Providers...
-         */
         // DarkaOnLine Swagger for API documentation
        // L5Swagger\L5SwaggerServiceProvider::class,
         // Add other package providers here
 
-        /*
-         * Application Service Providers...
-         */
         App\Providers\AppServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,        // ← أضف هذا السطر
+        App\Providers\RouteServiceProvider::class,        
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
-        // App\Providers\FortifyServiceProvider::class,   // إذا تستخدم Fortify
-        // App\Providers\JetstreamServiceProvider::class, // إذا تستخدم Jetstream
+        // App\Providers\FortifyServiceProvider::class,  
+        // App\Providers\JetstreamServiceProvider::class, 
     ],
 
     /*
