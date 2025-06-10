@@ -48,6 +48,8 @@ class UserController extends Controller
                 'email' => $user->email,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at,
                 'roles' => $user->roles->pluck('name'),
             ];
         });
@@ -166,40 +168,40 @@ class UserController extends Controller
 
 
 
-    /**
-     * @OA\Put(
-     *     path="/users/{id}",
-     *     summary="Update a user by ID",
-     *     tags={"Users"},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="string", description="UUID identifier", format="uuid")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             @OA\Property(property="email", type="string", example="newuser@example.com"),
-     *             @OA\Property(property="password", type="string", example="newpassword123"),
-     *             @OA\Property(property="first_name", type="string", example="Jane"),
-     *             @OA\Property(property="last_name", type="string", example="Smith"),
-     *             @OA\Property(property="role", type="string", example="user", description="Role name to assign (optional)")
-     *         )
-     *     ),
-     *     @OA\Response(response=200, description="User updated successfully"),
-     *     @OA\Response(response=404, description="User not found"),
-     *     @OA\Response(response=422, description="Validation failed")
-     * )
-     */
-    public function updateUser(Request $request, $id)
-    {
+   /**
+ * @OA\Patch(
+ *     path="/users/{id}",
+ *     summary="Partially update a user by ID",
+ *     tags={"Users"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         @OA\Schema(type="string", description="UUID identifier", format="uuid")
+ *     ),
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(
+ *             @OA\Property(property="email", type="string", example="newuser@example.com"),
+ *             @OA\Property(property="password", type="string", example="newpassword123"),
+ *             @OA\Property(property="first_name", type="string", example="Jane"),
+ *             @OA\Property(property="last_name", type="string", example="Smith"),
+ *             @OA\Property(property="role", type="string", example="user", description="Role name to assign (optional)")
+ *         )
+ *     ),
+ *     @OA\Response(response=200, description="User updated successfully"),
+ *     @OA\Response(response=404, description="User not found"),
+ *     @OA\Response(response=422, description="Validation failed")
+ * )
+ */
+public function patchUser(Request $request, $id)
+{
     try {
         $user = User::findOrFail($id);
 
         $validated = $request->validate([
             'email'      => 'sometimes|email|unique:users,email,' . $user->id,
-            'password'   => 'sometimes|string|min:8',
+            'password'   => 'sometimes|nullable|string|min:8', 
             'first_name' => 'sometimes|string|min:3',
             'last_name'  => 'sometimes|string|min:3',
             'role'       => 'sometimes|string|exists:roles,name'
@@ -209,6 +211,7 @@ class UserController extends Controller
             $validated['password'] = Hash::make($validated['password']);
         }
 
+        // Update only validated fields (except role)
         $user->update(collect($validated)->except('role')->toArray());
 
         if (array_key_exists('role', $validated)) {
@@ -233,7 +236,8 @@ class UserController extends Controller
         Log::error($e->getTraceAsString());
         return response()->json(['error' => 'Server error'], 500);
     }
-    }
+}
+
 
 
     /**
