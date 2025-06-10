@@ -14,7 +14,7 @@ use App\Http\Controllers\ServiceController;
     Route::put('dataservice/{id}', [ServiceController::class, 'update'])->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
     Route::delete('dataservice/{id}', [ServiceController::class, 'destroy'])->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
 
-Route::view('/', 'welcome');
+Route::view('/service-manager', 'welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
