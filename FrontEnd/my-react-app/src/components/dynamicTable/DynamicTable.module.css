@@ -1,0 +1,35 @@
+.tableContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 70vh;
+}
+
+table {
+  width: 95%;
+  margin: 0px 50px 40px 50px;
+  border-collapse: collapse;
+  border: 1px solid whitesmoke;
+}
+
+.headerCell {
+  padding: 10px 0 10px 20px;
+  text-align: start;
+  border-bottom: 1px solid whitesmoke;
+  color: black;
+  font-weight: bold;
+}
+
+.bodyCell {
+  padding: 10px 0 10px 20px;
+  text-align: start;
+  border-bottom: 1px solid whitesmoke;
+  color: grey;
+}
+
+.deleteIcon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}

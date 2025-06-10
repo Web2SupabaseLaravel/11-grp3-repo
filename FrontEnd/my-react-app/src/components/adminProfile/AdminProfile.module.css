@@ -1,0 +1,70 @@
+.profileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px;
+}
+.profile {
+    width: 600px;
+    height: 430px;
+    box-shadow: 5px 5px 5px whitesmoke;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.profileImg {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    border: 2px solid blue;
+    object-fit: cover;
+}
+
+.imageContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editProfilePicture {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.profileInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.profileRole {
+    color: var(--color-brand-1);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.profileName {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+}
+span {
+    color: rgb(73, 72, 72);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.profileExtraInfo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
