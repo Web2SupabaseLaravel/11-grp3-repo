@@ -1,0 +1,16 @@
+# Laravel
+/laravel/vendor/
+/laravel/node_modules/
+/laravel/.env
+/laravel/storage/*.key
+
+# React
+/react/node_modules/
+/react/build/
+/react/.env
+
+# Common
+.DS_Store
+.env.*
+npm-debug.log*
+yarn-debug.log*
