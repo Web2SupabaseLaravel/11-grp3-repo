@@ -1,6 +1,13 @@
 {
   "nodes": [
     {
+      "id": "src/components/SearchPage/SearchPage.jsx",
+      "label": "SearchPage",
+      "routes": [
+        "/search"
+      ]
+    },
+    {
       "id": "src/components/ResultPage/ResultPage.jsx",
       "label": "ResultPage",
       "routes": [

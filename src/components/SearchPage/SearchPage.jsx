@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, SearchForm, Frame, Footer } from "..";
 import doctor from "../../assets/images/doctor.png";
-export const Appointment = () => {
+export const SearchPage = () => {
   return (
     <div className="wrapper">
       <Navbar initialActive="About Us" />
