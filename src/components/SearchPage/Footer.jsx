@@ -1,5 +1,7 @@
 import React from "react";
-
+import icon1 from "../../assets/logo/pattern-1.png";
+import icon2 from "../../assets/logo/pattern-2.png"; 
+import logo from "../../assets/logo/image.png";
 export const Footer = () => (
   <footer className="footer">
     <div className="footer-hero">
@@ -11,12 +13,12 @@ export const Footer = () => (
       <img
         className="decor-left"
         alt="Decoration"
-        src="https://c.animaapp.com/mbnr5pdsVsuJRZ/img/pattern-1.png"
+        src= {icon1}
       />
       <img
         className="decor-right"
         alt="Decoration"
-        src="https://c.animaapp.com/mbnr5pdsVsuJRZ/img/pattern-1-1.png"
+        src= {icon2}
       />
     </div>
 
@@ -25,7 +27,7 @@ export const Footer = () => (
         <img
           className="footer-logo-icon"
           alt="Logo"
-          src="https://c.animaapp.com/mbnr5pdsVsuJRZ/img/ellipse-64.svg"
+          src= {logo}
         />
         <span className="footer-logo-text">Clinically</span>
         <div className="footer-contact">
@@ -64,5 +66,3 @@ export const Footer = () => (
     </div>
   </footer>
 );
-
-export default Footer;
