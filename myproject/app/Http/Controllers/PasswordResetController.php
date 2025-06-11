@@ -3,111 +3,96 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PasswordReset;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PasswordResetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-   
-$data['password_reset'] = \App\Models\PasswordReset::all();
-return $data;
-
+        $password_reset = PasswordReset::all();
+        return response()->json($password_reset);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-
-
-{$data['password_reset'] = new \App\Models\PasswordReset;
-$data['route'] = 'datapassword_reset.store';
-$data['method'] = 'post';
-//$data['titleForm'] = 'Form Input PasswordReset';
-//$data['submitButton'] = 'Submit';
-//return view('password_reset/form_password_reset', $data);
-
-
-}
+        return response()->json([
+            'message' => 'Use POST to /datapassword_reset to create a password reset entry.'
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-        'token' => 'required',
-        'expires_at' => 'required', 
-        'user_id' => 'required', 
-    ]);
+        $validated = $request->validate([
+            'token' => 'required',
+            'expires_at' => 'required|date',
+            'user_id' => 'required',
+        ]);
 
-    $inputPasswordReset = new \App\Models\PasswordReset(); 
-    $inputPasswordReset->name = $request->name;
-    $inputPasswordReset->expires_at = $request->expires_at;  
-    $inputPasswordReset->user_id = $request->puser_id; 
-    $inputPasswordReset->save();
-    return redirect('datapassword_reset/create');
+        $password_reset = PasswordReset::create($validated);
+
+        return response()->json([
+            'message' => 'Password reset created successfully.',
+            'id' => $password_reset->id,
+            'password_reset' => $password_reset
+        ], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        try {
+            $password_reset = PasswordReset::findOrFail($id);
+            return response()->json($password_reset);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Password reset not found.'], 404);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-       
-{
-    $data['password_reset'] = \App\Models\PasswordReset::findOrFail($id);
-    $data['route'] = ['datapassword_reset.update', $id];
-    $data['method'] = 'put';
-    //$data['title_form'] = 'Formulir Edit PasswordReset';
-    //$data['submit_button'] = 'Perbarui';
-
-   // return view('password_reset/form_password_reset', $data);
-}
+        try {
+            $password_reset = PasswordReset::findOrFail($id);
+            return response()->json([
+                'password_reset' => $password_reset,
+                'message' => 'Use PUT to /datapassword_reset/{id} to update.'
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Password reset not found.'], 404);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
-{
-    $validatedData = $request->validate([
-        'token' => 'required',
-        'expires_at' => 'required',
-        'user_id' => 'required',
-    ]);
+    {
+        $validated = $request->validate([
+            'token' => 'required',
+            'expires_at' => 'required|date',
+            'user_id' => 'required',
+        ]);
 
-    $editPasswordReset = \App\Models\PasswordReset::findOrFail($id);
-    $editPasswordReset->update($validatedData);
+        try {
+            $password_reset = PasswordReset::findOrFail($id);
+            $password_reset->update($validated);
 
-    return redirect('datapassword_reset/update');
-}
+            return response()->json([
+                'message' => 'Password reset updated successfully.',
+                'password_reset' => $password_reset
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Password reset not found.'], 404);
+        }
+    }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-       
-{
-    $deleteData = \App\Models\PasswordReset::where('id', $id)->firstOrFail();
-    $deleteData->delete();
+        try {
+            $password_reset = PasswordReset::findOrFail($id);
+            $password_reset->delete();
 
-    return redirect('datapassword_reset/delete');
-}
+            return response()->json([
+                'message' => 'Password reset deleted successfully.'
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Password reset not found.'], 404);
+        }
     }
 }
