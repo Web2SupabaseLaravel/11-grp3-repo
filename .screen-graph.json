@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {
+      "id": "src/components/ResultPage/ResultPage.jsx",
+      "label": "ResultPage",
+      "routes": [
+        "/results"
+      ]
+    }
+  ],
+  "edges": []
+}
