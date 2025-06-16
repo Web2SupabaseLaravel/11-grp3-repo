@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "VvClinic Appointment Slots API",
+        "title": "Clinic Appointment Slots API",
         "description": "Documentation for the Appointment Slots endpoints",
         "contact": {
             "email": "support@vvclinic.example"

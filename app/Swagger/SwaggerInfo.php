@@ -5,7 +5,7 @@ namespace App\Swagger;
 /**
  *  @OA\Info(
  *      version="1.0.0",
- *      title="VvClinic Appointment Slots API",
+ *      title="Clinic Appointment Slots API",
  *      description="Documentation for the Appointment Slots endpoints",
  *      @OA\Contact(
  *          email="support@vvclinic.example"

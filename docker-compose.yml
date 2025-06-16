@@ -3,7 +3,7 @@ services:
     build: .
     volumes:
       - ./:/var/www/html
-      - ./vendor:/var/www/html/vendor      # 🆕 هنا نربط مجلد vendor المحلي بالحاوية
+      - ./vendor:/var/www/html/vendor 
     ports:
       - "8000:8000"
     command: php artisan serve --host=0.0.0.0 --port=8000
