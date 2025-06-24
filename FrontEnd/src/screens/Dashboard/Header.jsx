@@ -20,16 +20,16 @@ export const Header = () => (
           <span style={{ fontFamily: 'Roboto, Helvetica', fontSize: '24px', fontWeight: 400, lineHeight: '32px', color: '#0F2F64', whiteSpace: 'nowrap' }}>Location</span>
           <span style={{ fontFamily: 'Roboto, Helvetica', fontSize: '24px', fontWeight: 400, lineHeight: '32px', color: '#0F2F64', whiteSpace: 'nowrap' }}>Health News</span>
           <span style={{ fontFamily: 'Roboto, Helvetica', fontSize: '24px', fontWeight: 400, lineHeight: '32px', color: '#0F2F64', whiteSpace: 'nowrap' }}>Careers</span>
-          <div className="position-absolute bg-light rounded-circle" style={{ width: '40px', height: '40px', padding: '6px', left: '1050px', top: '50%', transform: 'translateY(-50%)' }}>
-  <SevenBell1 className="position-absolute" style={{ width: '24px', height: '24px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+          <div className="position-absolute bg-light rounded-circle" style={{ width: '40px', height: '40px', padding: '6px', left: '1080px', top: '50%', transform: 'translateY(-50%)' }}>
+          <SevenBell1 className="position-absolute" style={{ width: '24px', height: '24px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
 </div>
         </div>
       </div>
       <div className="d-flex align-items-center gap-3">
         <div className="d-flex align-items-center gap-2">
-          <div className="position-relative rounded-circle" style={{ width: '48px', height: '48px', background: 'url(./src/assets/Kathryn.png) 50% 50% / cover' }} />
+          <div className="position-relative rounded-circle" style={{ width: '48px', height: '48px', background: 'url(./src/assets/Ahmad.jpg) 50% 50% / cover' }} />
           <div className="position-relative" style={{ marginTop: '-1px' }}>
-            <span style={{ fontFamily: 'Manrope, Helvetica', fontSize: '18px', fontWeight: 700, lineHeight: '30px', color: '#0f1728', whiteSpace: 'nowrap' }}>Kathryn</span>
+            <span style={{ fontFamily: 'Manrope, Helvetica', fontSize: '18px', fontWeight: 700, lineHeight: '30px', color: '#0f1728', whiteSpace: 'nowrap' }}>Ahmad</span>
           </div>
           <DownArrow1 className="position-relative" style={{ width: '24px', height: '24px' }} />
         </div>
